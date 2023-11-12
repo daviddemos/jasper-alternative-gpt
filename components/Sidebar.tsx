@@ -1,7 +1,5 @@
 import React, {Fragment, useState} from 'react';
 import {useRouter} from "next/router";
-import Image from "next/image";
-import Github from "./GitHub";
 
 export interface SidebarItem {
     label: string;
@@ -11,10 +9,9 @@ export interface SidebarItem {
 
 interface Props {
     items: SidebarItem[];
-    onShowPopup: () => void;
 }
 
-const Sidebar: React.FC<Props> = ({items, onShowPopup}) => {
+const Sidebar: React.FC<Props> = ({items}) => {
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
 
@@ -45,32 +42,10 @@ const Sidebar: React.FC<Props> = ({items, onShowPopup}) => {
             >
 
                 <div className="w-60 flex flex-col items-center justify-center p-4 hover:cursor-pointer"
-                     onClick={handleClick}>
-                    <div className="flex flex-col">
-                        <Image src={"/images/Jemaai-logo.png"} alt="Jema.ai" width="250" height="100"/>
-                        <h1 className="text-lg font-normal text-gray-700 text-center">Open Source </h1>
-                        <h1 className="text-lg font-semibold text-gray-700  text-center">Jasper <i
-                            className="fas fa-arrow-right text-primary"/> alternative</h1>
-
-
-                    </div>
-                </div>
+                     onClick={handleClick} />
 
                 <nav className="flex-1">
                     <ul className="py-4">
-                        <li className="mb-10">
-                            <div className="flex flex-row align-middle justify-center">
-                                <a
-                                    className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm text-gray-600 shadow-md transition-colors hover:bg-gray-100 mt-5 animate-wobble"
-                                    href="https://github.com/yuvalsuede/jasper-alternative-gpt"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <Github/>
-                                    <p>Star on Github</p>
-                                </a>
-                            </div>
-                        </li>
                         {items.map((item, index) => (
                             <Fragment key={index}>
                                 <li className="mb-2 ml-8">
@@ -85,17 +60,6 @@ const Sidebar: React.FC<Props> = ({items, onShowPopup}) => {
                                 </li>
                             </Fragment>
                         ))}
-
-                        <li>
-                            <div className="w-full flex align-middle justify-center mt-5">
-                                <button
-                                    className="w-2/3 bg-gradient-to-r from-green-400 to-blue-500 text-white px-6 py-2 rounded-full font-semibold text-xs shadow-md"
-                                    onClick={onShowPopup}
-                                >
-                                    Go Pro
-                                </button>
-                            </div>
-                        </li>
 
                     </ul>
 

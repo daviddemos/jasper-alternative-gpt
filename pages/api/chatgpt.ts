@@ -23,16 +23,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         const messages = [
             { role: "system", content: "You are a helpful assistant." },
-            { role: "user", content: `Your task is: "${mainGoal}".\n\nHere are the details:\n${instruction}. 
-            Please suggest 3 outputs. number them 1,2,3` },
+            { role: "user", content: `Your task is: "${mainGoal}".\n\nHere are the details:\n${instruction}.` },
         ];
 
         try {
             const response: any = await openai.createChatCompletion({
-                model: "gpt-3.5-turbo",
+                model: "gpt-4-1106-preview",
                 // @ts-ignore
                 messages: messages,
-                temperature: 1,
+                temperature: .7,
             });
 
             const reply = response?.data?.choices[0].message.content;

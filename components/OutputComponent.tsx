@@ -23,14 +23,6 @@ const OutputComponent: React.FC<OutputComponentProps> = ({generatedOutput, onCle
     };
 
     const splitOutput = (output: string): string[] => {
-        const patterns = ['___', '\\d\\.', '\\d\\)', '\\bOption\\s*\\d', '\\boption\\s*\\d', '\\bOutput\\s*\\d', '\\boutput\\s*\\d'];
-        for (const pattern of patterns) {
-            const regex = new RegExp(pattern, 'g');
-            const matches = output.split(regex);
-            if (matches.length > 1) {
-                return matches.map(match => match.trim()).filter(match => match.length > 0);
-            }
-        }
         return [output];
     };
 
